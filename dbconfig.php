@@ -1,15 +1,12 @@
 <?php
 
-function connect_db() {
+  function connect_db() {
+      $server =  getenv('OPENSHIFT_MYSQL_DB_HOST');
+      $user = getenv('OPENSHIFT_MYSQL_DB_USERNAME');
+      $pass = getenv('OPENSHIFT_MYSQL_DB_PASSWORD');
+      $database = getenv('OPENSHIFT_GEAR_NAME');
+      $connection = new mysqli($server, $user, $pass, $database);
 
-    	$connection = new mysqli(
-    	    getenv('OPENSHIFT_MYSQL_DB_HOST'),
-    	    getenv('OPENSHIFT_MYSQL_DB_USERNAME'),
-    	    getenv('OPENSHIFT_MYSQL_DB_HOST'),
-    	    getenv('OPENSHIFT_MYSQL_DB_PASSWORD'),
-    	    getenv('OPENSHIFT_MYSQL_DB_PORT')
-    	);
-
-    return $connection;
-}
+      return $connection;
+  }
 ?>
